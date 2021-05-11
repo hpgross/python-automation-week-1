@@ -7,8 +7,11 @@ from PIL import Image
 # scaling them down, rotating them by 90 degrees
 # and then converting them to a different format
 
-src_dir = "/home/student-00-de2bf90de6eb/images" #The file path for the source directory
-prt_dir = "/home/student-00-de2bf90de6eb/opt/icons" #The file path for the output directory
+src_dir = os.getcwd() + "/images" #The file path for the source directory
+prt_dir = "/opt/icons" #The file path for the output directory
+
+if not os.path.exists(prt_dir):
+    os.makedirs(prt_dir)
 
 for filename in os.listdir(src_dir):
     src_path = src_dir + "/" + filename
@@ -19,3 +22,4 @@ for filename in os.listdir(src_dir):
         im = im.rotate(270)
         im = im.convert("RGB")
         im.save(prt_path,"JPEG")
+        im.close()
